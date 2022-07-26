@@ -104,7 +104,7 @@ def test_check_subscription_popup(browser):  # чек подписки в поп
     page.check_subscription_popup()
 
 
-def test_check_subscription_hand_popup(browser):  # РАССЧИТАТЬ ПИКСЕЛЬНЫЙ СКРОЛЛ ДО КОНЦА СТРАНИЦЫ =- ГОТОВ
+def test_check_subscription_hand_popup(browser):
     page = MainPage(browser, result)
     page.open()
     page.check_subscription_hand_popup()

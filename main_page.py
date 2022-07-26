@@ -305,7 +305,7 @@ class MainPage(BasePage):
 
     def check_subscription_hand_popup(self):
         # подписка внизу страницы
-        assert self.browser.execute_script("window.scrollBy(1200, 1200);")  # РАССЧИТАТЬ ПИКСЕЛЬНЫЙ СКРОЛЛ
+        assert self.browser.execute_script("window.scrollBy(8300, 8300);")  # РАССЧИТАТЬ ПИКСЕЛЬНЫЙ СКРОЛЛ
         WebDriverWait(self.browser, 20).until(EC.element_to_be_clickable(
             (By.XPATH, '//*[@id="spiski-link-subscribe"]'))).click()
 
