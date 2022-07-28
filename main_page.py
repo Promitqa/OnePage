@@ -49,9 +49,9 @@ class MainPage(BasePage):
         button1.click()
         # в инпуты вводим логин и пароль
         input1 = self.browser.find_element(By.NAME, "email")
-        input1.send_keys("login")  # здесь укажи свой логин
+        input1.send_keys("YOUR LOGIN")  # здесь укажи свой логин
         input2 = self.browser.find_element(By.NAME, "pass")
-        input2.send_keys("password")  # здесь укажи свой пароль
+        input2.send_keys("YOUR PASSWORD")  # здесь укажи свой пароль
         button = self.browser.find_element(By.ID, "install_allow")
         button.click()
 
@@ -60,7 +60,7 @@ class MainPage(BasePage):
         WebDriverWait(self.browser, 40).until(EC.element_to_be_clickable(
             (By.XPATH, "/html/body/div[2]/header/div[1]/div[1]/div/div/div[2]/div[6]"))).click()
 
-        self.browser.find_element(
+        assert self.browser.find_element(
             By.XPATH, "/html/body/div[2]/header/div[1]/div[1]/div/div/div[2]/div[6]/ul/li[1]/a").click()
 
     def item_region(self):
@@ -76,10 +76,10 @@ class MainPage(BasePage):
         time.sleep(5)
         # сравниваем его
         get_title = self.browser.title  # возвращает заголовок в строковом формате
-        if "Подмосковье" in get_title:
-            pass
-        else:
+        if "Подмосковье" not in get_title:
             print("error region")
+        else:
+            pass
 
     def banner_place(self):
         # определяет наличие баннерного места, при отсутсвии = вывод ошибки
@@ -175,20 +175,23 @@ class MainPage(BasePage):
 
     def max_price(self):
         # проверяем соответствие макс цены по отсортированному списку
-        assert self.browser.execute_script("window.scrollBy(50, 50);")
+        self.browser.execute_script("window.scrollBy(50, 50);")
+
+        time.sleep(10)
+
         WebDriverWait(self.browser, 20).until(EC.element_to_be_clickable(
             (By.XPATH, "/html/body/div[2]/main/div/div[3]/div[2]/div/div/button"))).click()
-        assert self.browser.find_element(
-            By.XPATH, "/html/body/div[2]/main/div/div[3]/div[2]/div/div/div/ul/li[3]/label/span").click()
-        assert self.browser.execute_script("window.scrollBy(100, 100);")
+        self.browser.find_element(
+            By.XPATH, "/html/body/div[2]/main/div/div[3]/div[2]/div/div/div/ul/li[3]/label").click()
 
-        time.sleep(5)
+        time.sleep(10)
 
+        self.browser.execute_script("window.scrollBy(100, 100);")
         object1 = self.browser.find_element(
             By.XPATH, "/html/body/div[2]/main/div/div[3]/div[3]/div[1]/div/div[2]/a")
         object1.click()
 
-        assert self.browser.switch_to.window(window_name=self.browser.window_handles[1])
+        self.browser.switch_to.window(window_name=self.browser.window_handles[1])
 
         get_title = self.browser.title
         if "6 000 000" in get_title:
@@ -221,11 +224,11 @@ class MainPage(BasePage):
 
     def find_ipoteka_link(self):
         # работа ссылки на ипотеку
-        assert self.browser.execute_script("window.scrollBy(300, 300);")
+        self.browser.execute_script("window.scrollBy(300, 300);")
         WebDriverWait(self.browser, 20).until(EC.element_to_be_clickable(
             (By.ID, "buy_with_a_mortgage_from_lists"))).click()
 
-        assert self.browser.switch_to.window(window_name=self.browser.window_handles[1])
+        self.browser.switch_to.window(window_name=self.browser.window_handles[1])
 
         time.sleep(5)
 
@@ -236,14 +239,14 @@ class MainPage(BasePage):
         else:
             print("error ipoteks choice")
 
-    def find_element_button(self):
+    def find_element_button(self, requests=None):
         # обратный звонок
         button = self.browser.find_element(By.CLASS_NAME, "cpopup-btn__label")
         button.click()
 
         assert self.browser.find_element(By.CLASS_NAME, "cpopup__win")
 
-        input1 = self.browser.find_element(By.XPATH, "/html/body/div[5]/div/div[2]/form/div[1]/input")
+        input1 = self.browser.find_element(By.CSS_SELECTOR, "input.cpopup__input")
         input1.send_keys("111 111 11 11")
 
     def find_checkbox(self):
@@ -258,7 +261,8 @@ class MainPage(BasePage):
     def find_complecks_place(self):
         # наличие места под комплексы рядом
         element = self.browser.find_element(By.CLASS_NAME, "houses-preview")
-        assert self.browser.execute_script("arguments[0].scrollIntoView()", element)
+        assert self.browser.find_element(By.CLASS_NAME, "houses-preview")
+        self.browser.execute_script("arguments[0].scrollIntoView()", element)
 
         time.sleep(10)
 
@@ -272,7 +276,7 @@ class MainPage(BasePage):
 
     def number_phone(self):
         # релевантность телефона на объявлениях
-        assert self.browser.execute_script("window.scrollBy(200, 200);")
+        self.browser.execute_script("window.scrollBy(200, 200);")
 
         time.sleep(5)
 
@@ -305,7 +309,7 @@ class MainPage(BasePage):
 
     def check_subscription_hand_popup(self):
         # подписка внизу страницы
-        assert self.browser.execute_script("window.scrollBy(8300, 8300);")  # РАССЧИТАТЬ ПИКСЕЛЬНЫЙ СКРОЛЛ
+        self.browser.execute_script("window.scrollBy(8300, 8300);")
         WebDriverWait(self.browser, 20).until(EC.element_to_be_clickable(
             (By.XPATH, '//*[@id="spiski-link-subscribe"]'))).click()
 

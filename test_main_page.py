@@ -8,37 +8,31 @@ result = string.replace("x", str(random_number))
 print(result)
 
 
-def test_guest_can_go_to_login_page(browser):  # ГОТОВ
+def test_guest_can_go_to_login_page(browser):  # НУЖНЫЕ ТЕСТОВЫЕ ДАННЫЕ
     page = MainPage(browser, result)
     page.open()
     page.login_popup()
 
 
-def test_guest_can_go_to_login_page_vk(browser):   # ГОТОВ - НУЖНЫЕ ТЕСТОВЫЕ ДАННЫЕ В ВК
+def test_guest_can_go_to_login_page_vk(browser):   # НУЖНЫЕ ТЕСТОВЫЕ ДАННЫЕ В ВК
     page = MainPage(browser, result)
     page.open()
     page.login_vk()
 
 
-def test_guest_region_page(browser):  # ГОТОВ
+def test_guest_region_page(browser):
     page = MainPage(browser, result)
     page.open()
     page.item_region()
 
 
-def test_banner_place(browser):  # ГОТОВ проверяет только наличие места под баннер
+def test_banner_place(browser):  # проверяет наличие места под баннер
     page = MainPage(browser, result)
     page.open()
     page.banner_place()
 
 
-# def test_how_much_pere_links(browser):
-#     page = MainPage(browser, result)
-#     page.open()
-#     page.pere_links()
-
-
-def test_search_form(browser):  # ГОТОВ
+def test_search_form(browser):
     page = MainPage(browser, result)
     page.open()
     page.search_form()
@@ -50,49 +44,49 @@ def test_form_podbor(browser):  # сделан до перехода на рас
     page.search_form()
 
 
-def test_max_price(browser):  # ГОТОВ
+def test_max_price(browser):
     page = MainPage(browser, result)
     page.open()
     page.max_price()
 
 
-def test_find_spec_add(browser):  # ГОТОВ
+def test_find_spec_add(browser):
     page = MainPage(browser, result)
     page.open()
     page.find_spec_add()
 
 
-def test_find_ipoteka_link(browser):  # ГОТОВ
+def test_find_ipoteka_link(browser):
     page = MainPage(browser, result)
     page.open()
     page.find_ipoteka_link()
 
 
-def test_find_button(browser):  # ГОТОВ
+def test_find_button(browser):
     page = MainPage(browser, result)
     page.open()
     page.find_element_button()
 
 
-def test_find_checkbox(browser):  # ГОТОВ
+def test_find_checkbox(browser):
     page = MainPage(browser, result)
     page.open()
     page.find_checkbox()
 
 
-def test_find_complecks_place(browser):  # ГОТОВ проверяет наличие места + кликает по 1му предложению
+def test_find_complecks_place(browser):  # проверяет наличие место под комплексы и кликает на 1
     page = MainPage(browser, result)
     page.open()
     page.find_complecks_place()
 
 
-def test_find_map_place(browser):  # проверяет наличие места, пока так оставляем
+def test_find_map_place(browser):  # проверяет наличие места
     page = MainPage(browser, result)
     page.open()
     page.find_map_place()
 
 
-def test_number_phone(browser):  # проверяет маску и кликабельность
+def test_number_phone(browser):  # проверяет маску телефона и кликабельность
     page = MainPage(browser, result)
     page.open()
     page.number_phone()
